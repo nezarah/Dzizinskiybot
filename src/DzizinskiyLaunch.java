@@ -65,8 +65,8 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 	
 	private String timeNow() {
 		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        String time = sdf.format(cal.getTime()) ;
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+		String time = sdf.format(cal.getTime()) ;
 		return time;
 	}
 	
