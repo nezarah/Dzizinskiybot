@@ -21,6 +21,16 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 			e.printStackTrace();
 		}
 	}
+	 
+		@Override
+		public String getBotUsername() {
+			return "Dzizinskiybot";
+		}
+	 
+		@Override
+		public String getBotToken() {
+			return "283093949:AAFwn-fM4P7ndMhntYfc_I2bD4jfRQhXOvY";
+		}
 	
 	String[][] dimaChat={
 			//стандартне привітання
@@ -46,21 +56,28 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 			{"ой, ти знову про це"},
 			//років
 			{"Глибовець"},
-			{"Найкращий викладан у світі"},
+			{"Найкращий викладач у світі☺️"},
 			//дефолт
 			{"",
 			"Полайкай мені фотки в інстаграмі @dzizinskiy", "Твої батьки не програмісти? тоді звідки у них така фіча"}
 		};
- 
-	@Override
-	public String getBotUsername() {
-		return "Dzizinskiybot";
+	
+	
+	private String timeNow() {
+		Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+        String time = sdf.format(cal.getTime()) ;
+		return time;
 	}
- 
-	@Override
-	public String getBotToken() {
-		return "283093949:AAFwn-fM4P7ndMhntYfc_I2bD4jfRQhXOvY";
+	
+	private String universityGo() {
+		String words = "Йти:Не йти:Дивлячись чи є Міхалевич";
+		String[] wordsAsArray = words.split(":");	
+		int index = new Random().nextInt(wordsAsArray.length);
+		String goOrNotToGo = wordsAsArray[index];
+		return goOrNotToGo;
 	}
+
 	
 	@Override
 	public void onUpdateReceived(Update update) {
@@ -92,23 +109,6 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private String timeNow() {
-		Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        String time = sdf.format(cal.getTime()) ;
-		return time;
-	}
-	
-	private String universityGo() {
-		String words = "Йти:Не йти:Дивлячись чи є Міхалевич";
-		String[] wordsAsArray = words.split(":");
-		
-		int index = new Random().nextInt(wordsAsArray.length);
-		String goOrNotToGo = wordsAsArray[index];
-
-		return goOrNotToGo;
 	}
  
 }
