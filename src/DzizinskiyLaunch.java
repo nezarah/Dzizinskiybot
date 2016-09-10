@@ -21,6 +21,18 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 			e.printStackTrace();
 		}
 	}
+	
+	String[][] dimaChat={
+			//стандартне привітання
+			{"привіт","хай","ку"},
+			{"привіт, як тебе звати?☺️","привіт, ти фрешка?☺️","хаю хай☺️"},
+			//справи
+			{"як справи","як в тебе справи","як ти"},
+			{"чудово, щойно з Ауруму прийшов","та готуюсь до Міхалевича"},
+			//дефолт
+			{"",
+			"Полайкай мені фотки в інстаграмі @dzizinskiy"}
+		};
  
 	@Override
 	public String getBotUsername() {
