@@ -56,24 +56,43 @@ public class DzizinskiyLaunch extends TelegramLongPollingBot {
 	@Override
 	public void onUpdateReceived(Update update) {
 		Message message = update.getMessage();
+		ArrayList<Integer> answers = new ArrayList<>();
+
 		if (message != null && message.hasText()) {
-			
 			String msg = message.getText().toLowerCase();
 			String[] parts = msg.split(" ");
-			
+
 			for (int p = 0; p <= parts.length; p++){
-				for(int i = 0; i < dimaChat.length; i+=2){
-					for(int j = 0; j < dimaChat[i].length; j++){
-						if(parts[p].contains(dimaChat[i][j])){
-							int k = new Random().nextInt(dimaChat[i+1].length);
-							sendMsg(message, dimaChat[i+1][k]);
+				for(int i = 0; i < dimaChat.length; i+=2) {
+					for (int j = 0; j < dimaChat[i].length; j++) {
+
+						if (parts[p].contains(dimaChat[i][j])) {
+							answers.add(i);
 						}
 					}
+				}
+
+				if ((p + 1) == parts.length){
+					sendMsg(message,createMsg(answers, p));
 				}
 			}
 			sendMsg(message, "def");
 		}
 	}
+
+	private String createMsg(ArrayList<Integer> answers, int p){
+		StringBuilder response = new StringBuilder();
+		if (answers.size() > 0){
+			for (int l: answers){
+				int k = new Random().nextInt(dimaChat[l + 1].length);
+				response.append( dimaChat[l + 1][k]).append(System.lineSeparator());
+			}
+		}else{
+			response.append(dimaChat[dimaChat.length - 1][p % 2]);
+		}
+		return response.toString();
+	}
+
 
 	private void sendMsg(Message message, String text) {
 		SendMessage sendMessage = new SendMessage();
